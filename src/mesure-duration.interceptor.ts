@@ -1,9 +1,14 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import {map, Observable, tap} from 'rxjs';
 
 @Injectable()
 export class MesureDurationInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    return next.handle();
+    const startDate: number = Date.now();
+    return next.handle().pipe(
+        tap(valueFromRouterHandler =>
+                console.log(`\n\t Duration : ${Date.now() - startDate}ms`),
+        ),
+    );
   }
 }
