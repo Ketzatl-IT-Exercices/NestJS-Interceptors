@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
 
+  // Retourne un string aléatoire
   makeString(): string {
     let outString: string = '';
     let inOptions: string = 'abcdefghijklmnopqrstuvwxyz0123456789';
