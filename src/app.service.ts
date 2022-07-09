@@ -2,16 +2,12 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    const content: string = 'Salut les bilouttes !'
-    return `${content}`;
-  }
 
   makeString(): string {
     let outString: string = '';
     let inOptions: string = 'abcdefghijklmnopqrstuvwxyz0123456789';
 
-    for (let i = 0; i < 32; i++) {
+    for (let i = 0; i = this.makeRandomNumber(); i++) {
 
       outString += inOptions.charAt(Math.floor(Math.random() * inOptions.length));
 
@@ -20,5 +16,15 @@ export class AppService {
     return outString;
   }
 
-  result: string = this.makeString();
+  // Retourne un nombre aléatoire
+  makeRandomNumber() {
+    const nb = Math.floor(Math.random() * 101);
+    return nb
+  }
+
+  getHello(): string {
+    const result: string = this.makeString();
+    const content: string = `${result}`;
+    return `${content}`;
+  }
 }
